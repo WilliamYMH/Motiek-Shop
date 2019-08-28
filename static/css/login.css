@@ -101,9 +101,17 @@ body{
 
  a
  {
+	text-decoration: none;
+	-webkit-font-smoothing: antialiased;
 	 color: black;
  }
  a:hover
  {
-color: #b50000;
+	text-decoration: none;
+	-webkit-font-smoothing: antialiased;
+	color: #b50000;
+ }
+ a span
+ {
+	 color:black;
  }

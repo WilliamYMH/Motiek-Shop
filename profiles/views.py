@@ -2,7 +2,8 @@ from django.shortcuts import render, HttpResponseRedirect, redirect, render
 from django.views.generic import CreateView, FormView
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
-from django.contrib.auth.views import PasswordResetView
+from django.contrib.auth.views import PasswordResetView, LoginView
+from django.contrib.auth.forms import AuthenticationForm
 from .forms import UserCreationForm
 from django.urls import reverse_lazy
 
@@ -24,23 +25,12 @@ class SignUp(CreateView):
 class LoginUser(FormView):
 
     redirect_authenticated_user = True
-    success_url = '/'
+    success_url = reverse_lazy('home')
+    form_class = AuthenticationForm
+    template_name = 'registration/login.html'
 
     def post(self, request):
         if(request.POST.get('type_f', None) == 'login'):
-            username = request.POST.get('username', None)
-            password = request.POST.get('password', None)
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return HttpResponseRedirect('/')
-            return redirect('/')
+            return LoginView.as_view()(self.request)
         elif(request.POST.get('type_f', None) == 'reset_password'):
-            return PasswordResetView.as_view()(self.request)
-            # return render(request, 'registration/login.html', {'reset': True})
-
-    def get(self, request):
-        if(request.user.is_authenticated):
-            return redirect('/')
-        else:
-            return render(request, 'registration/login.html')
+            return PasswordResetView.as_view(html_email_template_name='registration/password_reset_email.html')(self.request)

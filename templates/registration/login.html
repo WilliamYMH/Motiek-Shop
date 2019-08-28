@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 {% load staticfiles %}
-
+{% load crispy_forms_tags %}
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,17 +26,9 @@
             <br>
             <form class="form-signin" method="post">
             {% csrf_token %}
-            
             <input type="hidden" name="type_f" value="login">
-              <div class="form-group">            
-                <input type="text" class="form-control" placeholder="username" name="username" required autofocus>
-              </div><br>
-              <div class="form-group">
-                <input type="password" id="inputPassword" class="form-control" placeholder="password" name="password" required>
-              </div>
-              <div class="custom-control custom-checkbox mb-3">
-                <input type="checkbox" class="custom-control-input" id="customCheck1">
-              </div>
+            {{ form|crispy }}
+            
               <center>
               <button class="newsletter_button" type="submit"><span>Log in</span></button>
               </center>

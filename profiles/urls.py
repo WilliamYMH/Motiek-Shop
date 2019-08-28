@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import PasswordResetConfirmView, PasswordResetCompleteView, PasswordResetDoneView
 
@@ -14,4 +14,5 @@ urlpatterns = [
          PasswordResetConfirmView.as_view(), name="password_reset_confirm"),
     path('accounts/reset/done/', PasswordResetCompleteView.as_view(),
          name="password_reset_complete"),
+    path('social-auth/', include('social_django.urls', namespace="social")),
 ]

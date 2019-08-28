@@ -37,13 +37,15 @@ INSTALLED_APPS = [
     'orders',
     'products',
     'profiles',
+    'crispy_forms',
+    'social_django',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crispy_forms',
+
 ]
 
 MIDDLEWARE = [
@@ -112,6 +114,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.facebook.FacebookOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
 
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
@@ -140,6 +146,9 @@ MEDIA_URL = '/media/'  # imagenes
 MEDIA_ROOT = 'media'  # imagenes
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+SOCIAL_AUTH_FACEBOOK_KEY = '846322789086154'
+SOCIAL_AUTH_FACEBOOK_SECRET = '03a2bf8df8f186ef71ab844c01150413'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
