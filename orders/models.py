@@ -1,9 +1,9 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from products.models import Product
+from django.conf import settings
 
-
-class PaymetMethod(models.Model):
+class PaymentMethod(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
@@ -21,9 +21,9 @@ class Citys(models.Model):
 
 
 class ShippingAddress(models.Model):
-    user = models.OneToOneField(User, models.CASCADE)
+    user = models.OneToOneField(get_user_model(), models.CASCADE)
     address = models.CharField(max_length=250)
-    department = models.ForeignKey(Departments, models.SET_NULL, null=True)
+    # department = models.ForeignKey(Departments, models.SET_NULL, null=True) deprecated
     city = models.ForeignKey(Citys, models.SET_NULL, null=True)
     codigo_postal = models.CharField(max_length=30)
     number_telephone = models.CharField(max_length=30)
@@ -32,29 +32,83 @@ class ShippingAddress(models.Model):
         return '%s %s' % (self.user, self.address)
 
 
+"""
 class ShoppingCart(models.Model):
     user = models.ForeignKey(User, models.CASCADE)
-    product = models.ForeignKey(Product, models.CASCADE)
-    quantity = models.IntegerField()
 
     def __str__(self):
         return '%s %s' % (self.user, self.product)
 
 
-class Order(models.Model):
-    user = models.ForeignKey(User, models.CASCADE)
-    paymet_method = models.ForeignKey(PaymetMethod, models.CASCADE)
-    total = models.DecimalField(max_digits=10, decimal_places=2)
+class Product_ShoppingCart(models.Model):
+    product = models.ForeignKey(Product, models.CASCADE)
+    shoppingCart = models.ForeignKey(ShoppingCart, models.CASCADE)
+    quantity = models.IntegerField()
+"""
+
+
+class Coupon(models.Model):
+    code = models.CharField(max_length=15)
+    amount = models.FloatField()
 
     def __str__(self):
-        return self.user
+        return self.code
 
 
 class OrderProduct(models.Model):
-    order = models.ForeignKey(Order, models.CASCADE)
+    user = models.ForeignKey(get_user_model(), models.CASCADE)
     product = models.ForeignKey(Product, models.CASCADE)
-    quantity = models.IntegerField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
+    quantity = models.IntegerField(default=1)
+    ordered = models.BooleanField(default=False)
+    
+    def __str__(self):
+        return '%s' % self.user
+
+    def get_total_price(self):
+        return self.quantity*self.product.price
+
+    def get_total_discount(self):
+        return self.quantity*self.product.discount_price
+
+    def get_ammount_saved(self):
+        return self.get_total_price() - self.get_total_discount()
+
+    def get_final_price():
+        if(self.product.discount_price):
+            return self.get_total_discount()
+        return self.get_total_price()
+
+
+class Order(models.Model):
+
+    user = models.ForeignKey(get_user_model(), models.CASCADE)
+    payment_method = models.ForeignKey(
+        PaymentMethod, models.SET_NULL, null=True)
+    ordered_date = models.DateTimeField(null=True, blank=True)
+    #total = models.DecimalField(max_digits=30, decimal_places=2)
+    coupon = models.ForeignKey(Coupon, models.SET_NULL, null=True, blank=True)
+    products = models.ManyToManyField(OrderProduct)
+    refund_requested = models.BooleanField(default=False)
+    refund_granted = models.BooleanField(default=False)
+    received = models.BooleanField(default=False)
+    ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return '%s %s' % (self.order, self.product)
+        return self.user.username
+
+    def get_total(self):
+        total = 0
+        for i in self.products.all():
+            total += i.get_final_price()
+        if(self.coupon):
+            total -= self.coupon.amount
+        return total
+
+class Refund(models.Model):
+    order = models.ForeignKey(Order, models.CASCADE)
+    reason = models.TextField
+    accepted = models.BooleanField(default=False)
+    email = models.EmailField
+
+    def __str__(self):
+        return self.pk

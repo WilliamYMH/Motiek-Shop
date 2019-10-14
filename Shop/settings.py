@@ -25,7 +25,7 @@ SECRET_KEY = 'tf+=iibmy0@i*&42r9$xu-d_53agl7(89y32knb@)fj-$al3pp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['motiek.com',]
 
 
 # Application definition
@@ -115,8 +115,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTHENTICATION_BACKENDS = [
-    'social_core.backends.facebook.FacebookOAuth2',
     'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.facebook.FacebookOAuth2'
 ]
 
 # Internationalization
@@ -145,14 +145,15 @@ STATICFILES_DIRS = [
 MEDIA_URL = '/media/'  # imagenes
 MEDIA_ROOT = 'media'  # imagenes
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 SOCIAL_AUTH_FACEBOOK_KEY = '846322789086154'
 SOCIAL_AUTH_FACEBOOK_SECRET = '03a2bf8df8f186ef71ab844c01150413'
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 25
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'motiek.10@gmail.com'
 EMAIL_HOST_PASSWORD = 'motiekw321'
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+

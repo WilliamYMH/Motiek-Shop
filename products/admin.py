@@ -1,5 +1,9 @@
 from django.contrib import admin
-from .models import Brand, Product, TypeProduct
+from .models import Brand, Product, TypeProduct, Color
+
+
+admin.site.register(TypeProduct)
+admin.site.register(Color)
 
 
 @admin.register(Brand)
@@ -9,5 +13,6 @@ class Brand(admin.ModelAdmin):
 
 @admin.register(Product)
 class Product(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name',)}
     list_display = ('id', 'type_product', 'name',
-                    'description', 'brand', 'price', 'color',)
+                    'brand', 'price', 'quantity', 'color', 'slug')

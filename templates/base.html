@@ -1,54 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    {% load staticfiles %}
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="description" content="MotiekShop">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/main_styles.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'css/responsive.css' %}">
-    <title>Motiek.</title>
-</head>
+
+{% include "head.html" %}
+
 <body>
 <div class="super_container">
-	<header class="header">
-		<div class="header_container">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<div class="header_content d-flex flex-row align-items-center justify-content-start">
-							<div class="logo"><a href="">Motiek.</a></div>
-							<nav class="main_nav">
-								<ul>
-									<li class="active"><a href="products/smarphone_list.html">Smarphones</a></li>
-									<li><a href="products/accessory_list.html">Accessories</a></li>
-									<li><a href="#">Offers</a></li>
-									
-								</ul>
-							</nav>
-                            <div class="header_extra ml-auto">
-                                	{% if user.is_authenticated %}
-       									<h3>{{ user.username }} | <a href="{% url 'logout' %}">Logout</a></h3>
-    							  	{% else %}
-        								<a href="{% url 'sign_up' %}">Register</a> | <a href="{% url 'login' %}">Login</a>
-    								{% endif %}
-                                <div class="hamburger"><i class="fa fa-bars" aria-hidden="true"></i></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>                    
 
-{% block content %}
+	{% include "header.html" %} 
 
-{% endblock content %}
+	<div>
+		{% block content %}
+		{% endblock content %}
+	</div>
 
-<footer>
-Motiek.
-</footer>
+</div>
+
+{% include "footer.html" %}
+
+{% include "scripts.html" %}
 </body>
 </html>
