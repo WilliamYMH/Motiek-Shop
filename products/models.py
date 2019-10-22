@@ -100,6 +100,7 @@ class Product(models.Model):
         return reverse("remove-from-cart", kwargs={
             'slug': self.slug
         })
+  
 
     def __str__(self):
         return self.name

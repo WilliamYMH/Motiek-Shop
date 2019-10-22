@@ -17,7 +17,7 @@ class SignUp(CreateView):
 
     def get(self, request, *args, **kwargs):
         if(request.user.is_authenticated):
-            return redirect('/')
+            return redirect('home')
         self.object = None
         return super().get(request, *args, **kwargs)
 
@@ -29,6 +29,12 @@ class LoginUser(FormView):
     form_class = AuthenticationForm
     template_name = 'registration/login.html'
 
+    def get(self, request, *args, **kwargs):
+        if(request.user.is_authenticated):
+            return redirect('home')
+        self.object = None
+        return super().get(request, *args, **kwargs)
+        
     def post(self, request):
         if(request.POST.get('type_f', None) == 'login'):
             return LoginView.as_view()(self.request)

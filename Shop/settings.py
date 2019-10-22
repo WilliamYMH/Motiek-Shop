@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'profiles',
     'crispy_forms',
     'social_django',
+    'dal',
+    'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',

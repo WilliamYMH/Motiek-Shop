@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% load staticfiles %}
+{% load template_tags %}
+	<link rel="stylesheet" type="text/css" href="{% static 'css/checkout.css' %}">
+
+	<div class="checkout">
+		<div class="container">
+			<div class="row">
+
+				<!-- Billing Info -->
+				<div class="col-md-6">
+					<div class="billing checkout_section">
+						<div class="section_title">Billing Address</div>
+						<div class="checkout_form_container">
+							<form method="POST" id="checkout_form"  enctype="multipart/form-data">
+							{% csrf_token %}
+							<div class="checkout_form">	
+								<div>
+									{{form.use_default_shipping_address}} <label >Use default shipping address ( modify in your profile settings )
+									
+								</label>
+								</div>
+								</br>
+								
+								<div class="section_subtitle">If you aren't going to use the default address, Enter your address info </div>
+								
+								<div>
+									<!-- City / Town -->
+									<label for="checkout_city">City/Town*</label>							
+									{{form_address.city|attrs_citys}}
+								</div>
+								<div>
+									<!-- Address -->
+									<label for="checkout_address">Address*</label>
+									{{form_address.address|attrs_inputs_address}}
+								</div>
+								<div>
+									<!-- Zipcode -->
+									<label for="checkout_zipcode">Zipcode*</label>
+									{{form_address.codigo_postal|attrs_inputs_address}}								
+								</div>
+								
+								<div>
+									<!-- Phone no -->
+									<label for="checkout_phone">Phone no*</label>
+									{{form_address.number_telephone|attrs_inputs_address}}	
+								</div>
+								
+								
+								</div>
+							</div>
+							</br>
+							<hr>
+							<div class="div_payment">
+
+							<center> 
+							<label>Payment Method*</label>
+									{{form.payment_method|attrs_payments}}	
+							</center>		
+							</div>
+								<button class="newsletter_button order_button"><span>Place Order</span></button>
+	
+							</form>
+						</div>
+					</div>
+				
+
+				<!-- Order Info -->
+
+				<div class="col-md-6">
+					<div class="order checkout_section">
+						<div class="section_title">Your order</div>
+						<div class="section_subtitle">Order details</div>
+
+						<!-- Order details -->
+						<div class="order_list_container">
+							<div class="order_list_bar d-flex flex-row align-items-center justify-content-start">
+								<div class="order_list_title">Product</div>
+								<div class="order_list_value ml-auto">$ Total</div>
+							</div>
+							<ul class="order_list">
+								{% for item_product in order.products.all %}
+								<li class="d-flex flex-row align-items-center justify-content-start">
+									<div class="order_list_title">{{item_product.product.name}}  ( {{item_product.quantity}} )</div>
+									<div class="order_list_value ml-auto">{{item_product.get_final_price}}</div>
+								</li>
+								{% endfor %}
+								
+								<li class="d-flex flex-row align-items-center justify-content-start">
+									<div class="order_list_title">Subtotal</div>
+									<div class="order_list_value ml-auto">$ {{order.get_total}}</div>
+								</li>
+								<li class="d-flex flex-row align-items-center justify-content-start">
+									<div class="order_list_title">Shipping</div>
+									<div class="order_list_value ml-auto">Free</div>
+								</li>
+								<li class="d-flex flex-row align-items-center justify-content-start">
+									<div class="order_list_title">Total</div>
+									<div class="order_list_value ml-auto">$ {{order.get_total}}</div>
+								</li>
+								
+								</div>
+							</ul>
+							<hr>
+							
+									
+						</div>
+						<div>
+								
+	
+					
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{% endblock content %}
