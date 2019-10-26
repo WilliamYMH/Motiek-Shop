@@ -14,7 +14,7 @@ from .models import Product
 
 class ProductList(ListView):
     model = Product
-    paginate_by = 2
+    paginate_by = 20
 
 
 class ProductDetail(DetailView):
@@ -35,6 +35,7 @@ class CartView(LoginRequiredMixin, View):
 
 @login_required
 def add_to_cart(request, slug):
+    
     product = get_object_or_404(Product, slug=slug)
     order_product, created = OrderProduct.objects.get_or_create(
         product=product,
