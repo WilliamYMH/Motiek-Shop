@@ -1,7 +1,17 @@
 
 <script type="text/javascript">
     function creditCard(value){
-        document.getElementById("result").innerHTML = value;
+        if(value=='Credit Card'){
+            document.getElementById("result").innerHTML = "
+            <div class="div_payment">
+                <label>Credit Card*</label>
+                <input name="credit_card">
+            </div>            
+            ";
+            
+        }else{
+            document.getElementById("result").innerHTML = " ";
+        }
     }
 </script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
