@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from .models import Order, Citys, ShippingAddress, OrderProduct
 from dal import autocomplete
 from django.contrib.auth import get_user_model
+import requests
 
 
 class CityAutocomplete(autocomplete.Select2QuerySetView):
@@ -86,6 +87,16 @@ class CheckoutView(LoginRequiredMixin, FormView):
                             user=request.user,
                             ordered=False
                         ).update(ordered=True)
+                        if(form.cleaned_data['payment_method'] == 'Credit Card'):
+                            r = requests.post(url='https://payment-restapi.herokuapp.com/payment-service', json={
+                                'monto': order.get_total,
+                                'credit_card': form.cleaned_data['credit_card'],
+                                'username': order.user.username,
+                                'correo': order.user.email,
+                                'tienda': 'motiek-shop',
+
+                            })
+                            
 
                 return redirect('home')
         else:
