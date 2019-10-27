@@ -25,7 +25,7 @@ def attrs_payments(value):
     return value.as_widget(attrs={
         'class': 'dropdown_item_select checkout_input_payment',
         'id': 'checkout_city',
-        'onChange': "creditCart()",
+        'onChange': "creditCard()",
     })
 
 @register.filter
