@@ -88,7 +88,7 @@ class CheckoutView(LoginRequiredMixin, FormView):
                             ordered=False
                         ).update(ordered=True)
                         if(form.cleaned_data['payment_method'] == 'Credit Card'):
-                            r = requests.post(url='https://payment-restapi.herokuapp.com/payment-service', json={
+                            r = requests.post(url='https://payment-restapi.herokuapp.com/payment-service', data={
                                 'monto': order.get_total,
                                 'credit_card': form.cleaned_data['credit_card'],
                                 'username': order.user.username,
@@ -96,7 +96,6 @@ class CheckoutView(LoginRequiredMixin, FormView):
                                 'tienda': 'motiek-shop',
 
                             })
-                            
 
                 return redirect('home')
         else:
