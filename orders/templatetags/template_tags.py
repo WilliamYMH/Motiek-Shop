@@ -20,13 +20,15 @@ def attrs_citys(value):
         'id': 'checkout_city'
     })
 
+
 @register.filter
 def attrs_payments(value):
     return value.as_widget(attrs={
         'class': 'dropdown_item_select checkout_input_payment',
         'id': 'checkout_city',
-        'onChange': "creditCard(this.value)",
+        'onChange': 'creditCard(this.value)'
     })
+
 
 @register.filter
 def attrs_inputs_address(value):
