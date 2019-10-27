@@ -1,7 +1,7 @@
 
 <script type="text/javascript">
     function creditCard(value){
-        const cc= "<div class='div_payment'><label>Credit Card*</label><input class='checkout_input_payment' name='credit_card'></div>";
+        const cc= "<div class='div_payment'><label>Credit Card*</label><br><input type='number' maxlength=17 class='checkout_input_payment' name='credit_card'></div>";
         if(value=='Credit Card'){
             document.getElementById("result").innerHTML = cc;
             
