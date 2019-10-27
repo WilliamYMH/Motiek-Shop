@@ -120,3 +120,17 @@
 	</div>
 
 {% endblock content %}
+<script type="text/javascript">
+    function creditCard(value){
+        const cc= "<div class="div_payment">
+                <label>Credit Card*</label>
+                <input name="credit_card">
+            </div>";
+        if(value=='Credit Card'){
+            document.getElementById("result").innerHTML = cc;
+            
+        }else{
+            document.getElementById("result").innerHTML = value;
+        }
+    }
+</script>
