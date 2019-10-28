@@ -6,6 +6,7 @@ from django.shortcuts import redirect
 from .models import Order, Citys, ShippingAddress, OrderProduct
 from dal import autocomplete
 from django.contrib.auth import get_user_model
+from django.contrib import messages
 import requests
 
 
@@ -96,6 +97,8 @@ class CheckoutView(LoginRequiredMixin, FormView):
                                 'tienda': 'motiek-shop',
 
                             })
+                            messages.info(request, r.content)
+                            print(r.content)
 
                 return redirect('home')
         else:
