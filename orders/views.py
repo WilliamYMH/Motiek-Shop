@@ -90,7 +90,7 @@ class CheckoutView(LoginRequiredMixin, FormView):
                         ).update(ordered=True)
                         if(form.cleaned_data['payment_method'] == 'Credit Card'):
                             r = requests.post(url='https://payment-restapi.herokuapp.com/payment-service', data={
-                                'monto': order.get_total,
+                                'monto': order.get_total(),
                                 'credit_card': request.POST.get('credit_card'),
                                 'username': order.user.username,
                                 'correo': order.user.email,
