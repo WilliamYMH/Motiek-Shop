@@ -32,7 +32,7 @@
 										<div>Cart <span>( {{ request.user|cart_item_count }} )</span></div>
 									</a>
 								</div> {{ user.username }} | <a href="{% url 'logout' %}">Logout</a>
-								<a href="{% url 'list_orders' %}"><i class="icon ion-social-facebook"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-paper"></i></a>
+								<a href="{% url 'list_orders' %}"><i class="icon ion-paperclip"></i></a>
 
     							  	{% else %}
 									  <div class="shopping_cart">
