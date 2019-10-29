@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import FormView
+from django.views.generic import FormView, ListView
 from .forms import CheckoutForm, ShippingAddressForm
 from django.shortcuts import redirect
 from .models import Order, Citys, ShippingAddress, OrderProduct
@@ -146,3 +146,6 @@ class CheckoutView(LoginRequiredMixin, FormView):
             return render(request, self.template_name, context)
         except:
             return render(request, 'cart.html')
+
+class ListOrdersView(ListView):
+    model = Order
