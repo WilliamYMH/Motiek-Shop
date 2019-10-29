@@ -32,7 +32,7 @@
 										<div>Cart <span>( {{ request.user|cart_item_count }} )</span></div>
 									</a>
 									</div>
-									<div class="dropdown">
+									
 										<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 											{{user.username}}
 										</button>
@@ -40,7 +40,7 @@
 											<a class="dropdown-item" href="{% url 'list_orders' %}">lista de compras</a>
 											<a class="dropdown-item" href="{% url 'logout' %}">Logout&nbsp;<i style="font-size:17px" class="icon ion-power"></i></a>
 										</div>
-									</div>
+									
     							  	{% else %}
 									  <div class="shopping_cart">
 									<a href="{% url 'login' %}">
