@@ -32,13 +32,14 @@
 										<div>Cart <span>( {{ request.user|cart_item_count }} )</span></div>
 									</a>
 								<div class="dropdown_p">
-								<li class="hassubs">
+								<ul><li class="hassubs">
 										<a href="">{{ user.username }} </a>
 										<ul>
 										<li><a href="{% url 'list_orders' %}">lista de compras</a></li>
 										<li><a href="{% url 'logout' %}">Logout&nbsp;&nbsp;<i style="font-size:20px" class="icon ion-power"></i></a></li>
 										</ul>
 								</li>
+								</ul>
 								</div>
     							  	{% else %}
 									  <div class="shopping_cart">
