@@ -31,6 +31,7 @@
 										</svg>
 										<div>Cart <span>( {{ request.user|cart_item_count }} )</span></div>
 									</a>
+								<div class="dropdown_p">
 								<li class="hassubs">
 										<a href="">{{ user.username }} </a>
 										<ul>
@@ -38,6 +39,7 @@
 										<li><a href="{% url 'logout' %}">Logout&nbsp;&nbsp;<i style="font-size:20px" class="icon ion-power"></i></a></li>
 										</ul>
 								</li>
+								</div>
     							  	{% else %}
 									  <div class="shopping_cart">
 									<a href="{% url 'login' %}">

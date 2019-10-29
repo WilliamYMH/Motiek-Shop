@@ -665,6 +665,58 @@ section
 }
 
 
+
+
+.dropdown_p > ul > li
+{
+	display: inline-block;
+	position: relative;
+}
+.dropdown_p > ul > li:not(:last-child)
+{
+	margin-right: 46px;
+}
+.dropdown_p > ul > li > a
+{
+	font-size: 16px;
+	font-weight: 600;
+	color: #767676;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+.dropdown_p > ul > li > a:hover,
+.dropdown_p > ul > li.active > a
+{
+	color: #1b1b1b;
+}
+.dropdown_p ul li.hassubs::after
+{
+	position: absolute;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+	left: calc(100% + 3px);
+	font-family: 'FontAwesome';
+	font-size: 10px;
+	content: '\f078';
+	color: #767676;
+}
+.dropdown_p ul li:hover::after,
+.dropdown_p ul li.active::after
+{
+	color: #1b1b1b;
+}
+
+
+
+
+
 .shopping_cart
 {
 	display: inline-block;
