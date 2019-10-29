@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  
+        {% for i in object_list %}
+            <div class="card text-center">
+                <div class="card-header">
+                    Pedido
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">Total pedido: $ {{i.get_total}}</h5>
+                    <p class="card-text">Fecha: {{i.ordered_date}}</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+
+          
+        {% endfor %}
+
+       
+{% endblock %}
