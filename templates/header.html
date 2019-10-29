@@ -31,16 +31,6 @@
 										</svg>
 										<div>Cart <span>( {{ request.user|cart_item_count }} )</span></div>
 									</a>
-								<div class="dropdown_p">
-								<ul><li class="hassubs">
-										<a href="">{{ user.username }} </a>
-										<ul>
-										<li><a href="{% url 'list_orders' %}">lista de compras</a></li>
-										<li><a href="{% url 'logout' %}">Logout&nbsp;&nbsp;<i style="font-size:20px" class="icon ion-power"></i></a></li>
-										</ul>
-								</li>
-								</ul>
-								</div>
 
 									<div class="dropdown">
 										<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -48,7 +38,7 @@
 										</button>
 										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 											<a class="dropdown-item" href="{% url 'list_orders' %}">lista de compras</a>
-											<a class="dropdown-item" href="{% url 'logout' %}">Logout <i style="font-size:18px" class="icon ion-power"></i></a>
+											<a class="dropdown-item" href="{% url 'logout' %}">Logout&nbsp;<i style="font-size:17px" class="icon ion-power"></i></a>
 										</div>
 									</div>
     							  	{% else %}
