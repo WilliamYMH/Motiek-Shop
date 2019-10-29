@@ -31,8 +31,8 @@
 										</svg>
 										<div>Cart <span>( {{ request.user|cart_item_count }} )</span></div>
 									</a>
-								</div> 	<a style="font-size:14px;" href="{% url 'list_orders' %}">lista de compras&nbsp;&nbsp;<i style="font-size:19px" class="icon ion-merge"></i></a>
-								&nbsp;&nbsp;{{ user.username }} | <a href="{% url 'logout' %}"><i style="font-size:19px" class="icon ion-android-add-circle"></i></a>
+								</div> 	<a style="font-size:14px;" href="{% url 'list_orders' %}">lista de compras&nbsp;&nbsp;<i style="font-size:19px" class="icon ion-paper"></i></a>
+								&nbsp;&nbsp;{{ user.username }} | &nbsp;&nbsp;&nbsp;<a href="{% url 'logout' %}"><i style="font-size:22px" class="icon ion-power"></i></a>
 
     							  	{% else %}
 									  <div class="shopping_cart">
