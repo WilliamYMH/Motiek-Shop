@@ -41,6 +41,16 @@
 								</li>
 								</ul>
 								</div>
+
+									<div class="dropdown">
+										<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+											{{user.username}}
+										</button>
+										<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+											<a class="dropdown-item" href="{% url 'list_orders' %}">lista de compras</a>
+											<a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
+										</div>
+									</div>
     							  	{% else %}
 									  <div class="shopping_cart">
 									<a href="{% url 'login' %}">
