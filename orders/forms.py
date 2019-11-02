@@ -1,6 +1,5 @@
 from django import forms
-from .models import Order, ShippingAddress, Citys
-from dal import autocomplete
+from .models import Order, ShippingAddress
 
 PAYMENT_METHODS_CHOICES =(
     ('Paypal', 'Paypal'),

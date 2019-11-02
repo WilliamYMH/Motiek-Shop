@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponseRedirect, redirect, render
+from django.shortcuts import render, redirect
 from django.views.generic import CreateView, FormView
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
@@ -34,7 +34,7 @@ class LoginUser(FormView):
             return redirect('home')
         self.object = None
         return super().get(request, *args, **kwargs)
-        
+
     def post(self, request):
         if(request.POST.get('type_f', None) == 'login'):
             return LoginView.as_view()(self.request)

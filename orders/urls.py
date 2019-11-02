@@ -1,4 +1,4 @@
-from .views import CheckoutView, CityAutocomplete, ShippingView, ListOrdersView
+from .views import CheckoutView, CityAutocomplete, ListOrdersView
 from django.urls import path
 urlpatterns = [
     path('checkout', CheckoutView.as_view(), name="checkout"),

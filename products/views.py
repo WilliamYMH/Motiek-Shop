@@ -1,8 +1,6 @@
 from orders.models import OrderProduct, Order
-from django.shortcuts import render
-from django.views.generic import ListView, CreateView, DetailView, View
-from django.contrib.auth.models import User
-from django.shortcuts import HttpResponseRedirect, redirect, render, get_object_or_404
+from django.views.generic import ListView, DetailView, View
+from django.shortcuts import redirect, render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.utils import timezone
@@ -35,9 +33,9 @@ class CartView(LoginRequiredMixin, View):
 
 @login_required
 def add_to_cart(request, slug):
-    
+
     product = get_object_or_404(Product, slug=slug)
-    order_product, created = OrderProduct.objects.get_or_create(
+    order_product = OrderProduct.objects.get_or_create(
         product=product,
         user=request.user,
         ordered=False
