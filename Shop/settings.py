@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost',
+ALLOWED_HOSTS = ['localhost',
                  '127.0.0.1', 'motiek.herokuapp.com']
 
 
@@ -146,9 +146,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-#STATICFILES_DIRS = [
+# STATICFILES_DIRS = [
 #    os.path.join(BASE_DIR, 'static')
-#]
+# ]
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
